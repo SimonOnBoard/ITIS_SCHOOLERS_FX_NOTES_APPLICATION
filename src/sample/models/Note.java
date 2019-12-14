@@ -1,14 +1,25 @@
 package sample.models;
 
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.util.Callback;
+
 public class Note {
     public String name;
     public String text;
     public String category;
     public Long id;
+    public boolean deleted;
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        String text = "";
+        return text + this.name + ": " + this.text + "\n category: " + this.category;
     }
 
     public void setId(Long id) {
@@ -26,6 +37,22 @@ public class Note {
         this.text = text;
         this.category = category;
         this.id = id;
+    }
+
+    public Note(String name, String text, String category, Long id, boolean deleted) {
+        this.name = name;
+        this.text = text;
+        this.category = category;
+        this.id = id;
+        this.deleted = deleted;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public String getName() {
@@ -50,15 +77,5 @@ public class Note {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    //Написать свой метод
-    @Override
-    public String toString() {
-        return "Note{" +
-                "name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", category='" + category + '\'' +
-                '}';
     }
 }

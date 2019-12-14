@@ -1,11 +1,14 @@
 package sample.controllers;
 
+import com.sun.javafx.scene.control.skin.ListViewSkin;
 import com.sun.tools.javac.comp.Check;
 import com.sun.xml.internal.txw2.output.DumpSerializer;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,9 +19,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import sample.Main;
 import sample.models.Note;
 import sample.models.SearchParametr;
+import sample.services.FileWorker;
 import sample.services.SearchPointInitializer;
 
 import java.io.IOException;
@@ -47,6 +52,8 @@ public class Controller implements Initializable {
     public CheckBox useCategoriesFilter;
 
     public ObservableList<Note> notes = FXCollections.observableArrayList();
+
+    public ArrayList<Note> deletedNotes = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -174,9 +181,16 @@ public class Controller implements Initializable {
         }
     }
 
-    public void setData(ObservableList<Note> noteList) {
-        listView.setItems(noteList);
-        notes = noteList;
+    public void setData(List<Note> noteList) {
+        for(Note note: noteList){
+            if(note.isDeleted()){
+                deletedNotes.add(note);
+            }
+            else{
+                notes.add(note);
+            }
+        }
+        listView.setItems(notes);
         categories.setItems(Main.categories);
         categories.setValue(categories.getItems().get(0));
     }

@@ -51,9 +51,10 @@ public class ShowNoteController implements Initializable {
         deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                note.setDeleted(true);
                 Main.mainScenecontroller.listView.getItems().remove(note);
                 Main.mainScenecontroller.notes.remove(note);
-                FileWorker.deleteNoteFromFile(note);
+                Main.mainScenecontroller.deletedNotes.add(note);
                 closeButton.getOnMouseClicked().handle(event);
             }
         });
@@ -80,6 +81,12 @@ public class ShowNoteController implements Initializable {
                 this.setData();
                 //Доделать добавление в изначальный лист
                 //Main.mainScenecontroller.listView.getItems().remove(null);
+                Main.mainScenecontroller.listView.getItems().sort(new Comparator<Note>() {
+                    @Override
+                    public int compare(Note o1, Note o2) {
+                        return o1.getText().length() - o2.getText().length();
+                    }
+                });
             }
         });
     }
