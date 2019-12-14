@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.Main;
 import sample.models.Note;
+import sample.services.FileWorker;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +52,8 @@ public class ShowNoteController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 Main.mainScenecontroller.listView.getItems().remove(note);
+                Main.mainScenecontroller.notes.remove(note);
+                FileWorker.deleteNoteFromFile(note);
                 closeButton.getOnMouseClicked().handle(event);
             }
         });
@@ -75,7 +78,8 @@ public class ShowNoteController implements Initializable {
             } else if (result.get() == ButtonType.OK) {
                 controller.onClose();
                 this.setData();
-                Main.mainScenecontroller.listView.getItems().remove(null);
+                //Доделать добавление в изначальный лист
+                //Main.mainScenecontroller.listView.getItems().remove(null);
             }
         });
     }

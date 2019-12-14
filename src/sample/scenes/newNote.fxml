@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -13,14 +14,17 @@
    <children>
       <Pane prefHeight="529.0" prefWidth="646.0">
          <children>
-            <Button fx:id="saveButton" layoutX="306.0" layoutY="461.0" mnemonicParsing="false" text="Сохранить" />
-            <TextField fx:id="name" layoutX="119.0" layoutY="76.0" prefHeight="39.0" prefWidth="448.0" />
-            <TextField fx:id="category" layoutX="153.0" layoutY="173.0" prefHeight="52.0" prefWidth="381.0" />
-            <Label layoutX="324.0" layoutY="40.0" text="NAME" />
+            <Button fx:id="saveButton" layoutX="280.0" layoutY="488.0" mnemonicParsing="false" text="Сохранить" />
+            <TextField fx:id="name" layoutX="37.0" layoutY="77.0" prefHeight="39.0" prefWidth="573.0" />
+            <TextField fx:id="category" layoutX="357.0" layoutY="194.0" prefHeight="39.0" prefWidth="240.0" />
+            <Label layoutX="316.0" layoutY="41.0" text="Имя" />
             <Label layoutX="304.0" layoutY="139.0" />
-            <Label layoutX="310.0" layoutY="139.0" text="Категория" />
-            <Label layoutX="300.0" layoutY="233.0" text="Текст записи" />
-            <TextArea fx:id="text" layoutX="123.0" layoutY="250.0" prefHeight="200.0" prefWidth="439.0" />
+            <Label layoutX="290.0" layoutY="131.0" text="Категория" />
+            <Label layoutX="280.0" layoutY="288.0" text="Текст Заметки" />
+            <TextArea fx:id="text" layoutX="41.0" layoutY="320.0" prefHeight="161.0" prefWidth="573.0" />
+            <ChoiceBox layoutX="47.0" layoutY="194.0" prefHeight="39.0" prefWidth="212.0" />
+            <Label layoutX="69.0" layoutY="156.0" text="Выберите существующую" />
+            <Label layoutX="421.0" layoutY="156.0" text="Введите новую" />
          </children>
       </Pane>
    </children>
